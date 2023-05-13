@@ -1,6 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
-import { registerValidation } from "../validation/auth.js";
+import {
+  registerValidation,
+  loginValidation,
+} from "../validation/validations.js";
 import checkAuth from "../utils/checkAuth.js";
 import * as UserControllers from "../controlles/UserControllers.js";
 
@@ -25,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/auth/register", registerValidation, UserControllers.register);
-app.post("/auth/login", UserControllers.login);
+app.post("/auth/login", loginValidation, UserControllers.login);
 app.get("/auth/me", checkAuth, UserControllers.getMe);
 
 app.listen(port, () => {

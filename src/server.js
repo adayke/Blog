@@ -3,10 +3,11 @@ import fs from "fs";
 import multer from "multer";
 
 import mongoose from "mongoose";
+import { cors } from "cors";
 
 const URI =
   "mongodb+srv://adaybek77:okokok12@cluster0.s1sfngm.mongodb.net/blog?retryWrites=true&w=majority";
-const PORT = 3000;
+const PORT = 8080;
 
 import {
   registerValidation,
@@ -40,6 +41,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.use(express.json());
+app.user(cors());
 app.use("/uploads", express.static("uploads"));
 
 app.post(

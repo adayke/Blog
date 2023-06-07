@@ -34,7 +34,7 @@ export const getOne = async (req, res) => {
   try {
     const postId = req.params.id;
 
-    PostModel.findOneAndUpdate(
+    PostModel.findOne(
       {
         _id: postId,
       },

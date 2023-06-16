@@ -5,10 +5,6 @@ import multer from "multer";
 import mongoose from "mongoose";
 import cors from "cors";
 
-const URI =
-  "mongodb+srv://adaybek77:okokok12@cluster0.s1sfngm.mongodb.net/blog?retryWrites=true&w=majority";
-const PORT = 8080;
-
 import {
   registerValidation,
   loginValidation,
@@ -20,7 +16,7 @@ import { handleValidationErrors, checkAuth } from "../utils/index.js";
 import { UserController, PostController } from "../controlles/index.js";
 
 mongoose
-  .connect(URI)
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("DB ok"))
   .catch((err) => console.log("DB error", err));
 
@@ -85,7 +81,7 @@ app.patch(
   PostController.update
 );
 
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT || 8080, (err) => {
   if (err) {
     return console.log(err);
   }
